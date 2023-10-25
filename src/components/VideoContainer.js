@@ -8,7 +8,7 @@ const VideoContainer = () => {
   useEffect(() => {
     getVideos();
   }, []);
-
+  console.log(process.env.REACT_APP_GOOGLE_API_KEY);
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEOS_API);
     const json = await data.json();
@@ -18,8 +18,8 @@ const VideoContainer = () => {
   return (
     <div className="flex flex-wrap">
       {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
-          <VideoCard key={video.id} info={video} />
+        <Link key={video.id} to={"/watch?v=" + video.id}>
+          <VideoCard info={video} />
         </Link>
       ))}
     </div>
